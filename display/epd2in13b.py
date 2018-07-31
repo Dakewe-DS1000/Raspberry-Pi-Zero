@@ -160,14 +160,14 @@ class EPD:
         if (frame_buffer_black != None):
             self.send_command(DATA_START_TRANSMISSION_1)           
             self.delay_ms(2)
-            for i in range(0, self.width * self.height / 8):
-                self.send_data(frame_buffer_black[i])  
+            #for i in range(0, self.width * self.height / 8):
+            self.send_data(frame_buffer_black[i])  
             self.delay_ms(2)                  
         if (frame_buffer_red != None):
             self.send_command(DATA_START_TRANSMISSION_2)
             self.delay_ms(2)
-            for i in range(0, self.width * self.height / 8):
-                self.send_data(frame_buffer_red[i])  
+            #for i in range(0, self.width * self.height / 8):
+            self.send_data(frame_buffer_red[i])  
             self.delay_ms(2)        
 
         self.send_command(DISPLAY_REFRESH)
