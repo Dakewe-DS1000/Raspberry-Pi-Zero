@@ -114,6 +114,7 @@ class EPD:
             print("Failed to init e-Paper device")
             return -1
         print("Initializing e-Paper device ...")
+        self.send_command(POWER_OFF)
         self.reset()
         self.send_command(BOOSTER_SOFT_START)
         self.send_data (0x17)
