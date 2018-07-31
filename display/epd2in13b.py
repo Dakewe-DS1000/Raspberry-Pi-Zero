@@ -161,7 +161,7 @@ class EPD:
         return buf
 
     def display_one_image(self, image):
-        self.send_command(DATA_START_TRANSMISSION_1)           
+        self.send_command(DATA_START_TRANSMISSION_2)           
         self.delay_ms(2)
         for i in range(0, self.width * self.height / 8):
             self.send_data(image[i])  
