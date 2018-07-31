@@ -52,7 +52,7 @@ def main():
 
     # write strings to the buffer
 
-    font = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMono.ttf', 12)
+    font = ImageFont.truetype('/usr/share/fonts/truetype/noto/NotoMono-Regular.ttf', 12)
     epd.draw_string_at(frame_black, 4, 30, "e-Paper Demo", font, COLORED)
     epd.draw_string_at(frame_red, 6, 10, "Hello world!", font, UNCOLORED)
 
