@@ -38,24 +38,24 @@ def main():
     epd.init()
 
     # clear the frame buffer
-    frame_black = [0xFF] * (epd.width * epd.height / 8)
-    frame_red = [0xFF] * (epd.width * epd.height / 8)
+    #frame_black = [0xFF] * (epd.width * epd.height / 8)
+    #frame_red = [0xFF] * (epd.width * epd.height / 8)
 
     # For simplicity, the arguments are explicit numerical coordinates
-    epd.draw_rectangle(frame_black, 10, 60, 50, 100, COLORED);
-    epd.draw_line(frame_black, 10, 60, 50, 100, COLORED);
-    epd.draw_line(frame_black, 50, 60, 10, 100, COLORED);
-    epd.draw_circle(frame_black, 80, 80, 15, COLORED);
-    epd.draw_filled_rectangle(frame_red, 10, 120, 50, 180, COLORED);
-    epd.draw_filled_rectangle(frame_red, 0, 6, 128, 26, COLORED);
-    epd.draw_filled_circle(frame_red, 80, 150, 15, COLORED);
+    #epd.draw_rectangle(frame_black, 10, 60, 50, 100, COLORED);
+    #epd.draw_line(frame_black, 10, 60, 50, 100, COLORED);
+    #epd.draw_line(frame_black, 50, 60, 10, 100, COLORED);
+    #epd.draw_circle(frame_black, 80, 80, 15, COLORED);
+    #epd.draw_filled_rectangle(frame_red, 10, 120, 50, 180, COLORED);
+    #epd.draw_filled_rectangle(frame_red, 0, 6, 128, 26, COLORED);
+    #epd.draw_filled_circle(frame_red, 80, 150, 15, COLORED);
 
     # write strings to the buffer
-    font = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMono.ttf', 12)
-    epd.draw_string_at(frame_black, 4, 30, "e-Paper Demo", font, COLORED)
-    epd.draw_string_at(frame_red, 6, 10, "Hello world!", font, UNCOLORED)
+    #font = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMono.ttf', 12)
+    #epd.draw_string_at(frame_black, 4, 30, "e-Paper Demo", font, COLORED)
+    #epd.draw_string_at(frame_red, 6, 10, "Hello world!", font, UNCOLORED)
     # display the frames
-    epd.display_frame(frame_black, frame_red)
+    #epd.display_frame(frame_black, frame_red)
 
     # display images
     frame_black = epd.get_frame_buffer(Image.open('black.bmp'))
