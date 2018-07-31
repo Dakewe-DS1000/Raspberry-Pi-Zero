@@ -52,17 +52,17 @@ def main():
 
     # write strings to the buffer
 
-    font = ImageFont.truetype('/usr/share/fonts/truetype/noto/NotoMono-Regular.ttf', 12)
-    epd.draw_string_at(frame_black, 4, 30, "e-Paper Demo", font, COLORED)
-    epd.draw_string_at(frame_red, 6, 10, "Hello world!", font, UNCOLORED)
+    #font = ImageFont.truetype('/usr/share/fonts/truetype/noto/NotoMono-Regular.ttf', 12)
+    #epd.draw_string_at(frame_black, 4, 30, "e-Paper Demo", font, COLORED)
+    #epd.draw_string_at(frame_red, 6, 10, "Hello world!", font, UNCOLORED)
 
     # display the frames
-    epd.display_frame(frame_black, frame_red)
+    #epd.display_frame(frame_black, frame_red)
 
     # display images
     frame_black = epd.get_frame_buffer(Image.open('black.bmp'))
     frame_red = epd.get_frame_buffer(Image.open('red.bmp'))
-    epd.display_frame(frame_black, frame_red)
+    epd.display_frame(frame_black, None)
 
     # You can get frame buffer from an image or import the buffer directly:
     #epd.display_frame(imagedata.IMAGE_BLACK, imagedata.IMAGE_RED)
