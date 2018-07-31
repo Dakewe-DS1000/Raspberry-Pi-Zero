@@ -61,7 +61,7 @@ def main():
 
     # display images
     frame_black = epd.get_frame_buffer(Image.open('black.bmp'))
-    frame_red = epd.get_frame_buffer(Image.open('red.bmp'))
+    #frame_red = epd.get_frame_buffer(Image.open('red.bmp'))
     #epd.display_frame(frame_black, None)
     epd.display_one_image(frame_black)
 
