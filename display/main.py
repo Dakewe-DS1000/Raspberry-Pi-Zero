@@ -38,8 +38,8 @@ def main():
     epd.init()
 
     # clear the frame buffer
-    #frame_black = [0xFF] * (epd.width * epd.height / 8)
-    #frame_red = [0xFF] * (epd.width * epd.height / 8)
+    frame_black = [0xFF] * (epd.width * epd.height / 8)
+    frame_red = [0xFF] * (epd.width * epd.height / 8)
 
     # For simplicity, the arguments are explicit numerical coordinates
     #epd.draw_rectangle(frame_black, 10, 60, 50, 100, COLORED);
@@ -52,9 +52,9 @@ def main():
 
     # write strings to the buffer
 
-    #font = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMono.ttf', 12)
-    #epd.draw_string_at(frame_black, 4, 30, "e-Paper Demo", font, COLORED)
-    #epd.draw_string_at(frame_red, 6, 10, "Hello world!", font, UNCOLORED)
+    font = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMono.ttf', 12)
+    epd.draw_string_at(frame_black, 4, 30, "e-Paper Demo", font, COLORED)
+    epd.draw_string_at(frame_red, 6, 10, "Hello world!", font, UNCOLORED)
 
     # display the frames
     #epd.display_frame(frame_black, frame_red)
