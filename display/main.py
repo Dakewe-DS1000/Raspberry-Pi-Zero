@@ -25,9 +25,9 @@
  ##
 
 import epd2in13b
-import Image
-import ImageFont
-import ImageDraw
+from PIL import Image
+from PIL import ImageFont
+from PIL import ImageDraw
 #import imagedata
 
 COLORED = 1
@@ -51,7 +51,7 @@ def main():
     epd.draw_filled_circle(frame_red, 80, 150, 15, COLORED);
 
     # write strings to the buffer
-    font = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMono.ttf', 12)
+    font = ImageFont.truetype('/usr/share/fonts/truetype/noto/NotoMono-Regular.ttf', 12)
     epd.draw_string_at(frame_black, 4, 30, "e-Paper Demo", font, COLORED)
     epd.draw_string_at(frame_red, 6, 10, "Hello world!", font, UNCOLORED)
     # display the frames
