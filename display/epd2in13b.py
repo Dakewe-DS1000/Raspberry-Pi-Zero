@@ -161,6 +161,12 @@ class EPD:
         return buf
 
     def display_one_image(self, image, isRed):
+        for i in range(0, self.width * self.height / 8):
+            self.send_data(0xFF)  
+        self.delay_ms(2)
+        self.send_command(DISPLAY_REFRESH)
+        self.wait_until_idle()
+
         if isRed == True:
             self.send_command(DATA_START_TRANSMISSION_2)
         else:
@@ -169,8 +175,8 @@ class EPD:
         for i in range(0, self.width * self.height / 8):
             self.send_data(image[i])  
         self.delay_ms(2)
-        #self.send_command(DISPLAY_REFRESH)
-        #self.wait_until_idle()
+        self.send_command(DISPLAY_REFRESH)
+        self.wait_until_idle()
 
     def display_frame(self, frame_buffer_black, frame_buffer_red):
         if (frame_buffer_black != None):
