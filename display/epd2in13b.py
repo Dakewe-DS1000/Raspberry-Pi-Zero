@@ -171,7 +171,7 @@ class EPD:
             self.send_command(DATA_START_TRANSMISSION_1)           
             self.delay_ms(2)
             for i in range(0, self.width * self.height / 8):
-                self.send_data(0)  
+                self.send_data(0x00)  
             self.delay_ms(2)
 
         if (frame_buffer_red != None):
@@ -184,7 +184,7 @@ class EPD:
             self.send_command(DATA_START_TRANSMISSION_2)
             self.delay_ms(2)
             for i in range(0, self.width * self.height / 8):
-                self.send_data(1)  
+                self.send_data(0xFF)  
             self.delay_ms(2)        
 
         self.send_command(DISPLAY_REFRESH)
