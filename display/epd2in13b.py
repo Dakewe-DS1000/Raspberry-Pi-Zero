@@ -160,17 +160,8 @@ class EPD:
                     buf[(x + y * self.width) / 8] &= ~(0x80 >> (x % 8))
         return buf
 
-    def display_one_image(self, image, isRed):
-        for i in range(0, self.width * self.height / 8):
-            self.send_data(0xFF)  
-        self.delay_ms(2)
-        self.send_command(DISPLAY_REFRESH)
-        self.wait_until_idle()
-
-        if isRed == True:
-            self.send_command(DATA_START_TRANSMISSION_2)
-        else:
-            self.send_command(DATA_START_TRANSMISSION_1)        
+    def display_one_black_image(self, image):
+        self.send_command(DATA_START_TRANSMISSION_1)        
         self.delay_ms(2)
         for i in range(0, self.width * self.height / 8):
             self.send_data(image[i])  
