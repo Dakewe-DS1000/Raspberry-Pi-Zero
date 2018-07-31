@@ -51,15 +51,11 @@ def main():
     #epd.draw_filled_circle(frame_red, 80, 150, 15, COLORED);
 
     # write strings to the buffer
-<<<<<<< HEAD
-    font = ImageFont.truetype('/usr/share/fonts/truetype/noto/NotoMono-Regular.ttf', 12)
-    epd.draw_string_at(frame_black, 4, 30, "e-Paper Demo", font, COLORED)
-    epd.draw_string_at(frame_red, 6, 10, "Hello world!", font, UNCOLORED)
-=======
+
     #font = ImageFont.truetype('/usr/share/fonts/truetype/freefont/FreeMono.ttf', 12)
     #epd.draw_string_at(frame_black, 4, 30, "e-Paper Demo", font, COLORED)
     #epd.draw_string_at(frame_red, 6, 10, "Hello world!", font, UNCOLORED)
->>>>>>> 1aecce179dfbb46ed4f185eb0884610d0b3845ac
+
     # display the frames
     #epd.display_frame(frame_black, frame_red)
 
