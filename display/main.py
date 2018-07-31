@@ -57,7 +57,7 @@ def main():
     epd.draw_string_at(frame_red, 6, 10, "Hello world!", font, UNCOLORED)
 
     # display the frames
-    #epd.display_frame(frame_black, frame_red)
+    epd.display_frame(frame_black, frame_red)
 
     # display images
     frame_black = epd.get_frame_buffer(Image.open('black.bmp'))
