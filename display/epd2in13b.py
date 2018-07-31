@@ -160,27 +160,31 @@ class EPD:
                     buf[(x + y * self.width) / 8] &= ~(0x80 >> (x % 8))
         return buf
 
-    def display_one_black_image(self, image):
-        self.send_command(DATA_START_TRANSMISSION_1)        
-        self.delay_ms(2)
-        for i in range(0, self.width * self.height / 8):
-            self.send_data(image[i])  
-        self.delay_ms(2)
-        self.send_command(DISPLAY_REFRESH)
-        self.wait_until_idle()
-
     def display_frame(self, frame_buffer_black, frame_buffer_red):
         if (frame_buffer_black != None):
             self.send_command(DATA_START_TRANSMISSION_1)           
             self.delay_ms(2)
             for i in range(0, self.width * self.height / 8):
                 self.send_data(frame_buffer_black[i])  
-            self.delay_ms(2)                  
+            self.delay_ms(2)
+        else :
+            self.send_command(DATA_START_TRANSMISSION_1)           
+            self.delay_ms(2)
+            for i in range(0, self.width * self.height / 8):
+                self.send_data(0)  
+            self.delay_ms(2)
+
         if (frame_buffer_red != None):
             self.send_command(DATA_START_TRANSMISSION_2)
             self.delay_ms(2)
             for i in range(0, self.width * self.height / 8):
                 self.send_data(frame_buffer_red[i])  
+            self.delay_ms(2)
+        else:
+            self.send_command(DATA_START_TRANSMISSION_2)
+            self.delay_ms(2)
+            for i in range(0, self.width * self.height / 8):
+                self.send_data(1)  
             self.delay_ms(2)        
 
         self.send_command(DISPLAY_REFRESH)
