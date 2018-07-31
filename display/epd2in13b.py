@@ -111,7 +111,9 @@ class EPD:
 
     def init(self):
         if (epdif.epd_init() != 0):
+            print("Failed to init e-Paper device")
             return -1
+        print("Initializing e-Paper device ...")
         self.reset()
         self.send_command(BOOSTER_SOFT_START)
         self.send_data (0x17)
@@ -127,6 +129,7 @@ class EPD:
         self.send_data (0x68)
         self.send_data (0x00)
         self.send_data (0xD4)
+        print("Init Complete ...")
 
     def wait_until_idle(self):
         while(self.digital_read(self.busy_pin) == 0):      # 0: busy, 1: idle
