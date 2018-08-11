@@ -23,12 +23,23 @@
  # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  # THE SOFTWARE.
  ##
-
+import socket
+import datetime
+import fcntl
+import struct
 import epd2in13b
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
 #import imagedata
+
+def get_ip_address(net_name):
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    return socket.inet_ntoa(fcntl.ioctl(
+                            s.fileno(),
+                            0x8915,
+                            struct.pack("256s", net_name[:15])
+                            )[20:24])
 
 COLORED = 1
 UNCOLORED = 0
@@ -38,8 +49,8 @@ def main():
     epd.init()
 
     # clear the frame buffer
-    #frame_black = [0xFF] * (epd.width * epd.height / 8)
-    #frame_red = [0xFF] * (epd.width * epd.height / 8)
+    frame_black = [0xFF] * (epd.width * epd.height / 8)
+    frame_red   = [0xFF] * (epd.width * epd.height / 8)
 
     # For simplicity, the arguments are explicit numerical coordinates
     #epd.draw_rectangle(frame_black, 10, 60, 50, 100, COLORED);
@@ -50,19 +61,37 @@ def main():
     #epd.draw_filled_rectangle(frame_red, 0, 6, 128, 26, COLORED);
     #epd.draw_filled_circle(frame_red, 80, 150, 15, COLORED);
 
-    # write strings to the buffer
+    # get ip address :
+    ip_address = get_ip_address("wlxe84e0638e14f")
+    str_ip = str(ip_address)
 
-    #font = ImageFont.truetype('/usr/share/fonts/truetype/noto/NotoMono-Regular.ttf', 12)
-    #epd.draw_string_at(frame_black, 4, 30, "e-Paper Demo", font, COLORED)
-    #epd.draw_string_at(frame_red, 6, 10, "Hello world!", font, UNCOLORED)
+    # get datetime
+    year  = datetime.datetime.now().year
+    month = datetime.datetime.now().month
+    day   = datetime.datetime.now().day
+    date  = str(year) + "." + str(month) + "." + str(day)
+
+    # write strings to the buffer
+    font = ImageFont.truetype('/usr/share/fonts/truetype/noto/NotoMono-Regular.ttf', 12)
+    epd.draw_string_at(frame_red, 20, 10, date, font, COLORED)
+    epd.draw_string_at(frame_red, 5, 30, "WLAN Info:", font, COLORED)
+
+    font = ImageFont.truetype("/usr/share/fonts/truetype/noto/NotoMono-Regular.ttf", 10)
+    epd.draw_string_at(frame_red, 5,  50,  "Device name :",   font, COLORED)
+    epd.draw_string_at(frame_red, 10, 60,  "wlxe84e0638e14f", font, COLORED)
+
+    epd.draw_string_at(frame_red, 5,  80,  "IP Address :",    font, COLORED)
+    epd.draw_string_at(frame_red, 10, 90, str_ip,            font, COLORED)
+
+    font = ImageFont.truetype("/usr/share/fonts/truetype/noto/NotoMono-Regular.ttf", 12)
 
     # display the frames
-    #epd.display_frame(frame_black, frame_red)
+    epd.display_frame(frame_black, frame_red)
 
     # display images
-    frame_black = epd.get_frame_buffer(Image.open('black.bmp'))
-    frame_red = epd.get_frame_buffer(Image.open('red.bmp'))
-    epd.display_frame(frame_black, None)
+    #frame_black = epd.get_frame_buffer(Image.open('black.bmp'))
+    #frame_red = epd.get_frame_buffer(Image.open('red.bmp'))
+    #epd.display_frame(frame_black, None)
 
     # You can get frame buffer from an image or import the buffer directly:
     #epd.display_frame(imagedata.IMAGE_BLACK, imagedata.IMAGE_RED)
